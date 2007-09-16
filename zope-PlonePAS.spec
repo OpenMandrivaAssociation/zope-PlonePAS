@@ -1,31 +1,26 @@
-%define product		PlonePAS
-%define realVersion     2.2
-%define release         1
-
-%define version %(echo %{realVersion} | sed -e 's/-/./g')
+%define Product PlonePAS
+%define product plonepas
+%define name    zope-%{Product}
+%define version 3.0
+%define release %mkrel 1
 
 %define zope_minver	2.7
 %define plone_minver	2.0
-
 %define zope_home	%{_prefix}/lib/zope
 %define software_home	%{zope_home}/lib/python
 
-Summary:	This product adapts the PluggableAuthService for use by Plone
-Name:		zope-%{product}
+Name:		%{name}
 Version:	%{version}
-Release:	%mkrel %{release}
+Release:	%{release}
+Summary:	This product adapts the PluggableAuthService for use by Plone
 License:	GPL
 Group:		System/Servers
-Source:		http://plone.org/products/plonepas/releases/%{version}/PlonePAS-%{realVersion}.tar.bz2
-URL:		http://plone.org/products/plonepas
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
-BuildArch:	noarch
+URL:        http://plone.org/products/%{product}
+Source:     http://plone.org/products/%{product}/releases/%{version}/%{Product}-%{version}.tar.gz
 Requires:	zope >= %{zope_minver}
 Requires:	plone >= %{plone_minver}
-
-Provides:	plone-Faq == %{version}
-Obsoletes:	zope-Faq
-
+BuildArch:  noarch
+BuildRoot:  %{_tmppath}/%{name}-%{version}
 
 %description
 This product adapts the PluggableAuthService for use by Plone. PAS is a
@@ -36,7 +31,7 @@ strategy and many other aspects of user data source integration. It is also
 shared between Zope Corp. products, CPS and now Plone.
 
 %prep
-%setup -c
+%setup -c -q
 
 %build
 # Not much, eh? :-)
@@ -45,7 +40,7 @@ shared between Zope Corp. products, CPS and now Plone.
 %install
 %{__rm} -rf %{buildroot}
 %{__mkdir_p} %{buildroot}/%{software_home}/Products
-%{__cp} -a %{product} %{buildroot}%{software_home}/Products/%{product}
+%{__cp} -a %{Product} %{buildroot}%{software_home}/Products
 
 
 %clean
@@ -62,7 +57,5 @@ if [ -f "%{_prefix}/bin/zopectl" ] && [ "`%{_prefix}/bin/zopectl status`" != "da
 fi
 
 %files
-%defattr(0644, root, root, 0755)
+%defattr(-,root,root)
 %{software_home}/Products/*
-
-
