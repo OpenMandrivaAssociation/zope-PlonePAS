@@ -1,8 +1,8 @@
 %define Product PlonePAS
 %define product plonepas
 %define name    zope-%{Product}
-%define version 3.0
-%define release %mkrel 2
+%define version 3.1
+%define release %mkrel 1
 
 %define zope_minver	2.7
 %define plone_minver	2.0
@@ -15,12 +15,12 @@ Release:	%{release}
 Summary:	This product adapts the PluggableAuthService for use by Plone
 License:	GPL
 Group:		System/Servers
-URL:        http://plone.org/products/%{product}
-Source:     http://plone.org/products/%{product}/releases/%{version}/%{Product}-%{version}.tar.gz
+URL:        	http://plone.org/products/%{product}
+Source:     	http://plone.org/products/%{product}/releases/%{version}/%{Product}-%{version}.tar.gz
 Requires:	zope >= %{zope_minver}
 Requires:	zope-Plone >= %{plone_minver}
-BuildArch:  noarch
-BuildRoot:  %{_tmppath}/%{name}-%{version}
+BuildArch:  	noarch
+BuildRoot:  	%{_tmppath}/%{name}-%{version}
 
 %description
 This product adapts the PluggableAuthService for use by Plone. PAS is a
