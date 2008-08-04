@@ -2,7 +2,7 @@
 %define product plonepas
 %define name    zope-%{Product}
 %define version 3.1
-%define release %mkrel 1
+%define release %mkrel 3
 
 %define zope_minver	2.7
 %define plone_minver	2.0
